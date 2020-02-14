@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- header -->
+    <AppHeader />
+
+    <!-- loading overlay -->
+    <LoadingOverlay v-if="loadingStatus" />
+
+    <!-- main content -->
+    <div class="container main-content py-5">
+      <router-view />
+    </div>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+body {
+  background: #f8f9fa !important;
 }
 </style>
+
+<script>
+import AppHeader from "./components/layout/AppHeader";
+import LoadingOverlay from "./components/layout/LoadingOverlay";
+export default {
+  components: {
+    AppHeader,
+    LoadingOverlay
+  },
+  computed: {
+    loadingStatus() {
+      return this.$store.getters.getLoadingStatus;
+    }
+  }
+};
+</script>
