@@ -12,7 +12,6 @@ npm install -g json-server
 ## Run JSON server
 ```
 cd .\src\api\
-```
 json-server recipes.json
 ```
 ### Compiles and hot-reloads for development
